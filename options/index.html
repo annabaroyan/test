@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Настройки TP-Support</title>
+	<style type="text/css">
+		body {
+		  margin: 0;
+		  background-color: #fff;
+		}
+
+		.jumbotron {
+		  padding: 30px;
+		  background-color: #eee;
+		}
+
+		.container {
+		  width: 400px;
+		  margin: 0 auto;
+		  padding: 15px;
+		}
+
+		.jumbotron .container {
+		  max-width: 100%; /* allows the jumbotron to adjust on smaller widths */
+		  background-color: #ddd;
+		}
+
+		.jumbotron h1 {
+		  text-align: center; /* centers the heading */
+		  color: #000;
+		  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+		  font-weight: 600;
+		  text-transform: uppercase;
+		}
+
+		#status {
+			background-color: #3ce83c;
+			width: 100%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+    <div class="container">
+		<h4>Общие настройки</h4>
+		<p>Адаптивный масштаб Hlpdesk <input type="checkbox" id="resizeOpt"></p>
+		<p>Отображать CTN/TT в названии вкладок <input type="checkbox" id="modifyTitle"></p>
+		<p>Ночной режим (BETA) <input type="checkbox" id="nightMode"></p>
+		<p>Открывать создаваемые заявки в новом окне <input type="checkbox" id="createInNewTab"></p>
+		<hr>
+		<h4>Настройки отображения</h4>
+		<p>Отображать левую панель <input type="checkbox" id="showLeftBlock"></p>
+		<p>Отображать кнопки быстрого заведения заявок <input type="checkbox" id="showQuickTT"></p>
+		<hr>
+		<p>Отображать вкладки в заявке <input type="checkbox" id="showTicketTabs"></p>
+		<p>Вкладка по умолчанию
+		<select id="defaultTab">
+			<option value="1">Договор</option>
+			<option value="2" data-tp2=true>Шаблоны</option>
+			<option value="3" data-tp2=true>Статусы</option>
+			<option value="4" data-tp2=true>Заявки</option>
+			<option value="5">Устройства</option>
+			<option value="6">СМС</option>
+		</select>
+	</p>
+		<hr>
+		<div><button id="save">Сохранить</button><a id="reset" style="color: red; float: right; border: 1px solid red; padding: 2px; cursor: pointer">Восстановить настройки по умолчанию</a></div>
+		<div id="status"></div>
+	</div>
+
+<script src="options_worker.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

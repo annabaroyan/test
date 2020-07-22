@@ -1,0 +1,165 @@
+<div id="tabs_ctrl" style="display: flex; flex-direction: column; width: 36px">
+  <input type="radio" name="tabs" id="toggle-tab1" checked/>
+  <label for="toggle-tab1" class="forButton"><i class="fa fa-info fa-2x" aria-hidden="true" data-tooltip="Договор"></i></label>
+  {{#ifCond _group "2"}}
+  <input type="radio" name="tabs" id="toggle-tab2" />
+  <label for="toggle-tab2" class="forButton"><i class="fa fa-file-text fa-2x" aria-hidden="true" data-tooltip="Шаблоны"></i></label>
+
+  <input type="radio" name="tabs" id="toggle-tab3" />
+  <label for="toggle-tab3" class="forButton"><i class="fa fa-pencil fa-2x" aria-hidden="true" data-tooltip="Статусы"></i></label>
+
+  <input type="radio" name="tabs" id="toggle-tab4" />
+  <label for="toggle-tab4" class="forButton"><i class="fa fa-plus-square fa-2x" aria-hidden="true" data-tooltip="Заявки"></i></label>
+  {{/ifCond}}
+  <input type="radio" name="tabs" id="toggle-tab5" />
+  <label for="toggle-tab5" class="forButton"><i class="fa fa-usb fa-rotate-270 fa-2x" style="margin-left: -4px" aria-hidden="true" data-tooltip="Устройства"></i></label>
+
+  <input type="radio" name="tabs" id="toggle-tab6" />
+  <label for="toggle-tab6" class="forButton"><i class="fa fa-envelope fa-2x" aria-hidden="true" data-tooltip="СМС"></i></label>
+</div>
+
+<div id="tabs_panel" style="margin-left: -2px; width: 100%">
+  <div id="tab1" class="tab tab-well" style="display: block">
+    <table class="spaced" style="width: 100%">
+      <tr>
+        <td colspan="2">
+          Статус договора: <b>{{contract.status.name}}</b> {{#if contract.status.date}}<small>(с {{contract.status.date}}</small>){{/if}}
+        </td>
+      </tr>
+      <tr><td><i class="fa fa-user" aria-hidden="true"></i></td><td><input type="text" class="btnClipboard" value="{{contract.fio}}" style="width: 100%" readonly/></td></tr>
+      <tr><td><i class="fa fa-sign-in" aria-hidden="true"></i></td><td>
+        <input type="text" size="9" class="btnClipboard" value="{{contract.alias}}" readonly/>
+        {{#ifCond _group "2"}}
+        <div style="float:right">
+          Логи авторизации:
+          <select id="authLogs" style="width:70px">
+            <option value='hotkey://authlogs?realtime=1&city={{address.city.shortname}}&ctn={{contract.ctn}}&alias={{contract.alias}}'>VPN</option>
+            <option value='hotkey://authlogs?realtime=0&city={{address.city.shortname}}&ctn={{contract.ctn}}&alias={{contract.alias}}'>История VPN</option>
+            <option value='hotkey://authlogs?realtime=1&city=CP&ctn={{contract.ctn}}&alias={{contract.alias}}'>CP</option>
+            <option value='hotkey://authlogs?realtime=0&city=CP&ctn={{contract.ctn}}&alias={{contract.alias}}'>История CP</option>
+            <option value='hotkey://authlogs?realtime=1&city=OTT&ctn={{contract.ctn}}&alias={{contract.alias}}'>OTT</option>
+            <option value='hotkey://authlogs?realtime=0&city=OTT&ctn={{contract.ctn}}&alias={{contract.alias}}'>История OTT</option>
+          </select>
+          <button class="btnClipboard" id="authLogsBtn"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        {{/ifCond}}
+      </td></tr>
+      <tr><td><i class="fa fa-map-marker" aria-hidden="true"></i></td><td><textarea class="btnClipboard" rows=3 style="width: 100%" readonly/>{{address.name}}</textarea></td></tr>
+      <tr><td><i class="fa fa-phone" aria-hidden="true"></i></td><td>{{#each phones.all}}<input type="text" size="7" value="{{phones}}" class="btnClipboard" readonly/>&nbsp;{{/each}}</td></tr>
+      {{#if contract.billing.needed}}<tr><td><i class="fa fa-credit-card" aria-hidden="true"></i></td><td>БЦ с <b>{{contract.billing.cycle}}</b>, к оплате <b>{{contract.billing.needed}}</b>, баланс <b>{{contract.billing.balance}}</b></td></tr>{{/if}}
+    </table>
+    <!-- onlineTable -->
+    <div id="greentable" style="background: #CCFF99; border: 2px solid #CCFF99"></div>
+  </div>
+
+
+
+  {{#ifCond _group "2"}}
+  <div id="tab2" class="tab">
+    <select id="tmplSelect" multiple="" style="height: 90%; width: 100%;">
+      <option value="1">Последний сохраненный коммент</option>
+      <option value="2">Низкая скорость</option>
+      <option value="3">Техник (с ТКД)</option>
+      <option value="4">Техник (без ТКД)</option>
+      <option value="5">Блокировка порта</option>
+      <option value="6">Шаблон IPTV</option>
+      <option value="7">Инверсия TVE</option>
+      <option value="8">#dir815интерфейс</option>
+      <option value="9">#заменаiptv</option>
+      <option value="10">#заменаtve</option>
+      <option value="11">#видеоподдержкаотказ</option>
+      <option value="12">#видеоподдержка</option>
+      <option value="13">#smartflash</option>
+    </select>
+    <button id="tmplClearBtn" type="button" style="width: 100%;">Очистить</button>
+  </div>
+
+  <div id="tab3" class="tab">
+    <select id="ttActionSelect" multiple="" style="height: 90%; width: 100%;">
+      <option value="need_client" data-sendsms="notavail" data-status="24" data-timer="30" data-newcomment="Недозвон по всем контактным номерам, отложена на 30 часов">Отложить на 30 часов (недозвон)</option>
+      <option value="ums_test" data-status="24" data-timer="168" data-newcomment="Отложена на 7 дней для теста">Отложить на 7 дней (UMS TEST)</option>
+      <option value="{{_operator}}" data-sendsms="close" data-status="7" data-answer='Превышено количество <span style="color:blue;"><strong>нерезультативных</strong></span> контактов' data-newcomment="Превышено количество нерезультативных контактов">Закрыть по нерезультативным</option>
+      <option value="Office" data-status="6" data-newcomment="Переведена на нужную роль">Ошибка офиса</option>
+      <option value="need_client" data-status="24" data-timer="morning" data-newcomment="Нужен клиент, отложена на утро">Отложить на утро</option>
+      <option value="{{_operator}}" data-status="7" data-answer="Проблема самоустранилась/<font color=blue><b>не актуальна</b></font>" data-newcomment="Проблема неактуальна">Самоустранилась/неактуальна</option>
+      <option id="7" value="{{_operator}}" data-status="7" data-answer="Нет комментария ОРК">Нет комментария ОРК</option>
+      <option value="iskhodyashiy_obzvon" data-status="6" data-type="update" data-newcomment="Переведена на нужную роль">Очереди ЦПК / Исходящий обзвон</option>
+    </select>
+    <button id="ttActionBtn" type="button" {{#ifCond (getTicketStatus tickets) 7}}disabled="disabled" {{/ifCond}}style="width: 100%;">Применить</button>
+  </div>
+
+  <div id="tab4" class="tab">
+    <select id="createttSelect" multiple="" style="height: 90%; width: 100%;">
+      <option value="clientdep" data-type="19">Компенсация</option>
+      <option value="clientdep" data-type="20">Претензия</option>
+      <option value="clientdep" data-type="56">Сохранение</option>
+      <option value="gkkrkc" data-type="88" data-addfio="1">Ошибка сотрудника (1 линия/ОСО)</option>
+      <option value="quality_sup" data-type="88" data-addfio="1">Ошибка сотрудника (ТП2)</option>
+    </select>
+    <button id="createttBtn" type="button" style="width: 100%;">Завести заявку</button>
+  </div>
+  {{/ifCond}}
+
+  <div id="tab5" class="tab tab-well">
+    {{#if devices.routers}}
+      {{#each devices.routers}}
+      <table class="spaced">
+        <tr><th colspan=2><i class="fa fa-wifi" aria-hidden="true" data-tooltip="Роутер"></i> {{model}} &nbsp; <button onclick="window.open('http://mcpe.bee.vimpelcom.ru/csr/Default.aspx?serial={{serial}}')">MCPE</button></th></tr>
+        <tr><td style="width:30px">S/N</td><td><input type="text" class="btnClipboard" readonly size="15" value="{{serial}}"/></td></tr>
+      </table>
+      <hr>
+      {{/each}}
+    {{/if}}
+    {{#if devices.tve}}
+      {{#each devices.tve}}
+      <table class="spaced">
+        <tr><th colspan=4><i class="fa fa-television" aria-hidden="true" data-tooltip="TVE"></i> {{guid_family}} {{guid_brand}} &nbsp; <button onclick="window.open('http://mn-mspsbo01.vimpelcom.ru:8280/tve/#/search?fttb_login={{@root.contract.ctn}}')">TVE</button></th></tr>
+        <tr><td style="width:40px">S/N</td><td><input type="text" class="btnClipboard" readonly size="16" value="{{serial}}"/></td><td style="width:40px">MAC</td><td><input type="text" class="btnClipboard" readonly size="16" value="{{mac}}"/></td></tr>
+        <tr><td style="width:40px">GUID</td><td colspan=3><input type="text" class="btnClipboard" readonly style="width:100%" value="{{guid}}"/></td></tr>
+      </table>
+      <hr>
+      {{/each}}
+    {{/if}}
+    {{#if devices.iptv}}
+      {{#each devices.iptv}}
+      <table class="spaced">
+        <tr><th colspan=4><i class="fa fa-television" aria-hidden="true" data-tooltip="IPTV"></i>{{#ifCond hdd "1"}} <i class="fa fa-hdd-o" aria-hidden="true" data-tooltip="с HDD"></i>{{/ifCond}} {{vendor}} {{model}} &nbsp; <button onclick="window.open('http://proxy.iptv.corbina.net/find/?type=Guid&word={{guid}}')">MSTV</button></th></tr>
+        <tr><td style="width:40px">S/N</td><td><input type="text" class="btnClipboard" readonly size="17" value="{{serial}}"/></td><td style="width:40px">MAC</td><td><input type="text" class="btnClipboard" readonly size="15" value="{{mac}}"/></td></tr>
+        <tr><td style="width:40px">GUID</td><td colspan=3><input type="text" class="btnClipboard" readonly style="width:100%" value="{{guid}}"/></td></tr>
+      </table>
+      <hr>
+      {{/each}}
+      <a href="http://78.107.199.242/sinhrob/?acc=Corbinamsk00_{{contract.id}}_1" class="btnLink" target="_blank">Синхронизировать с биллингом</a>
+    {{/if}}
+  </div>
+
+  <div id="tab6" class="tab">
+    <form id="smsForm" action="send_sms.pl" method="get" target="_blank">
+      <div id="phoneLinks" style="display:flex">Номер:
+        {{#each phones.all}}
+        <a data-id="{{phones}}" name="smsphone" style="margin-right: 5px; cursor: pointer;">+7{{phones}}</a>
+        {{/each}}
+      </div>
+      <input id="phoneNumber" placeholder="Номер телефона (10 цифр, начиная с 9)" required="" pattern="[0-9]{10}" name="value" type="text" style="width: 100%; margin-bottom: 10px;">
+      <textarea id="smsText" placeholder="Текст сообщения" required="" name="text" maxlength="500" rows="8" style="width: 100%; resize: none; height: 57.5%;"></textarea>
+      <span id="smsTextCount" style="position: relative; float:right; top: -20px; left: -5px">0/500</span>
+      <div style="display: flex; justify-content: space-between; width: 100%">
+        <button class="smsTmplBtn" type="button" value='{{sms_templates.notavail.s_desc}}'>Недозвон</button>
+        <button class="smsTmplBtn" type="button" value='{{sms_templates.close.s_desc}}'>Закрытие</button>
+        <button class="smsTmplBtn" type="button" value='{{sms_templates.router.s_desc}}'>Роутер</button>
+      </div>
+      <select id="smsTmplSelect" class="mt-8 mb-16" style="width:100%; padding: 5px">
+        <option value="">Другие шаблоны</option>
+        {{#each sms_templates.other}}
+        <option id="{{s_id}}" value="{{s_desc}}">{{s_name}}</option>
+        {{/each}}
+      </select>
+      <br />
+      <div style="display: flex">
+        <input id="smsSend" style="padding:5px;width:50%" type="button" value="Отправить СМС">
+        <input id="sendMorning" type="checkbox" style="display:none"><label for="sendMorning" class="forButton" style="margin-left:10px; padding-top:10px">Отложить на утро</label>
+        </form>
+        <button id="extSmsSender" style="margin-left: 7px; width: 35px"><i class="fa fa-external-link" aria-hidden="true"></i></button>
+      </div>
+  </div>
+</div>

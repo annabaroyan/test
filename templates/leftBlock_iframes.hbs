@@ -1,0 +1,30 @@
+<div id="btnLinksWindow" class="iframe-popup" style="width:1200px">
+  <button type="button" onclick="frames.btnLinksFrame.contentWindow.history.back()">Назад</button>
+  <button type="button" onclick="frames.btnLinksFrame.contentWindow.location.reload()">Обновить</button>
+  <button type="button" style="margin-left:100px" onclick="frames.btnLinksFrame.src='/showcalls.pl?login={{contract.alias}}'">Сессии</button>
+  <button type="button" onclick="frames.btnLinksFrame.src='/ng#/auth/log/{{contract.alias}}'">Логи авторизации</button>
+  <iframe id="btnLinksFrame" src="/showcalls.pl?login={{contract.alias}}" style="width:100%; height: 100%"></iframe>
+</div>
+
+<div id="btnPortsWindow" class="iframe-popup"  style="width:1000px">
+  <button type="button" onclick="frames.btnPortsFrame.contentWindow.history.back()">Назад</button>
+  <button type="button" onclick="frames.btnPortsFrame.contentWindow.location.reload()">Обновить</button>
+  <iframe id="btnPortsFrame" src="/portshistory.pl?ctn={{contract.ctn}}&login={{contract.alias}}" style="width:100%; height: 100%"></iframe>
+</div>
+
+<div id="btnEquipmentWindow" class="iframe-popup" style="width:1200px">
+  <button type="button" onclick="frames.btnEquipmentFrame.contentWindow.history.back()">Назад</button>
+  <button type="button" onclick="frames.btnEquipmentFrame.contentWindow.location.reload()">Обновить</button>
+  <iframe id="btnEquipmentFrame" src="/ptn/equipments/for_login?login={{contract.alias}}" style="width:100%; height: 100%"></iframe>
+</div>
+
+{{#ifCond _group "2"}}{{else}}
+<div id="btnLastmileWindow" class="iframe-popup" style="width:1000px; height: 550px">
+  <button type="button" onclick="frames.btnLastmileFrame.contentWindow.history.back()">Назад</button>
+  <button type="button" onclick="frames.btnLastmileFrame.contentWindow.location.reload()">Обновить</button>
+  <iframe id="btnLastmileFrame" src="" style="width:100%; height:565px"></iframe>
+</div>{{/ifCond}}
+
+<div id="btnDiagWindow" class="iframe-popup" style="width:1200px">
+  <iframe id="btnDiagFrame" src="https://baobab.vimpelcom.ru/show?ctn={{contract.ctn}}" style="width:100%; height: 100%"></iframe>
+<div>

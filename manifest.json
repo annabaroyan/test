@@ -1,0 +1,104 @@
+{
+   "background": {
+      "scripts": [ "js/background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "logo.png",
+      "default_popup": "/popup/popup.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "css": [ "/css/font-awesome.css", "/css/tabs.css" ],
+      "js": [
+        "/js/lib/clipboard.min.js",
+        "/js/lib/mousetrap.min.js",
+        "/js/lib/handlebars.js",
+        "/js/hax_ajax/main.js",
+        "/js/hd/functions.js",
+        "/options/options_worker.js"
+      ],
+      "matches": [
+        "http://hlpdesk.fttb.corbina.net/*",
+        "http://fttb.bee.vimpelcom.ru/*",
+        "http://fttb/*",
+        "https://hlpdesk.fttb.corbina.net/*",
+        "https://fttb.bee.vimpelcom.ru/*",
+        "https://fttb/*"
+      ],
+      "run_at": "document_start"
+   }, {
+      "all_frames": true,
+      "js": [ "/js/templates.js" ],
+      "matches": [
+        "http://hlpdesk.fttb.corbina.net/*",
+        "http://fttb.bee.vimpelcom.ru/*",
+        "http://fttb/*",
+        "https://hlpdesk.fttb.corbina.net/*",
+        "https://fttb.bee.vimpelcom.ru/*",
+        "https://fttb/*"
+      ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "/js/hd/ptn.js" ],
+      "matches": [
+        "http://hlpdesk.fttb.corbina.net/ptn/ng_ptn*",
+        "http://fttb.bee.vimpelcom.ru/ptn/ng_ptn*",
+        "http://fttb/ptn/ng_ptn*",
+        "https://hlpdesk.fttb.corbina.net/ptn/ng_ptn*",
+        "https://fttb.bee.vimpelcom.ru/ptn/ng_ptn*",
+        "https://fttb/ptn/ng_ptn*"
+      ],
+      "run_at": "document_end"
+   },  {
+      "all_frames": true,
+      "js": [ "/js/hd/showcalls.js" ],
+      "matches": [
+        "http://hlpdesk.fttb.corbina.net/showcalls.pl*",
+        "http://fttb/showcalls.pl*",
+        "http://fttb.bee.vimpelcom.ru/showcalls.pl*",
+        "https://hlpdesk.fttb.corbina.net/showcalls.pl*",
+        "https://fttb/showcalls.pl*",
+        "https://fttb.bee.vimpelcom.ru/showcalls.pl*"
+      ],
+      "run_at": "document_end"
+   }, {
+      "all_frames": true,
+      "js": [ "/js/hd/ng.js" ],
+      "matches": [
+        "http://hlpdesk.fttb.corbina.net/ng*",
+        "http://fttb/ng*",
+        "http://fttb.bee.vimpelcom.ru/ng*",
+        "https://hlpdesk.fttb.corbina.net/ng*",
+        "https://fttb/ng*",
+        "https://fttb.bee.vimpelcom.ru/ng*"
+      ],
+      "run_at": "document_end"
+   } ],
+   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "description": "FTTB helpdesk enhancer",
+   "icons": {
+      "128": "logo.png",
+      "16": "logo.png",
+      "32": "logo.png",
+      "48": "logo.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhfnIz0RhnnS0wAR2393OO3LJfl70J5jUSohvJ3MUNQS1rEng3jaBMQ7FvsPzM9wu8LcNd3bCey7bfOfFopWCqPwI2DC1kmil7uXxJCbgCXjCYmZjx0cDYEFC3+XTd9vZEpYf7GeSHbqDhCmZPEj0WVS/X34MejCHaWSOV5grp8mBgHb/SlPZIl13l829+SeC07WMxBwAUqCIyqIdkGaKgE7zBzxSWFPTKGuRPC/NEPaR2mFKzVix/MmjwVWVuxuUDPjB5JyBSbwFoh9WQ6TSbiGLvn7m2j3dnaOoUYZPxYHmf7aDN4pVye5LMeLd5Jh6gYRG+YxcJn97fH1AztDIjQIDAQAB",
+   "manifest_version": 2,
+   "name": "TP-Support",
+   "options_page": "/options/index.html",
+   "permissions": [
+     "background",
+     "storage",
+     "notifications",
+     "alarms",
+     "http://hlpdesk.fttb.corbina.net/*",
+     "http://fttb/*",
+     "http://fttb.bee.vimpelcom.ru/*",
+     "https://hlpdesk.fttb.corbina.net/*",
+     "https://fttb/*",
+     "https://fttb.bee.vimpelcom.ru/*"
+   ],
+   "version": "6.4.1.3",
+   "web_accessible_resources": [ "/css/*", "/fonts/*", "/templates/*", "/js/hax_ajax/hack.js" ]
+}

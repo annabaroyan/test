@@ -1,0 +1,238 @@
+<p class="mt-2 mb-0">
+  <b>ТКД</b>
+  <input type="text" class="btnClipboard" readonly size=11 value="{{greentable.ip}}"/>
+  {{#ifCond _group "2"}}
+  <button class="btnClipboard btn" value="hotkey://tsterm?switch={{greentable.ip}}&echelon={{greentable.echelon}}">
+    <i class="fa fa-terminal"></i>
+  </button>
+  {{/ifCond}}
+  <b>порт</b> {{greentable.port}}
+  <button class="btnClipboard btn" value="ТКД {{greentable.ip}} порт {{greentable.port}}">
+    <i class="fa fa-clipboard"></i>
+  </button>
+  <span>({{upper greentable.contype}})</span>
+  <button type="button" id="refreshOnlineTable" style="float: right">
+    <i class="fa fa-refresh" aria-hidden="true"></i>
+  </button>
+</p>
+
+<p class="mt-2 mb-0">
+{{#if contract.fvno}}
+  <b>MAC-адрес</b> {{greentable.mac}}
+{{else}}
+  <b>Шлюз</b>
+  <input type="text" class="btnClipboard" readonly size=11 value="{{greentable.agg}}"/>
+  <small style="position:relative; left: -18px; margin-right: -17px">(s)</small>
+  {{#ifCond _group "2"}}
+  <button class="btnClipboard btn" value="hotkey://tsterm?switch={{greentable.agg}}&echelon={{greentable.echelon}}">
+    <i class="fa fa-terminal"></i>
+  </button>
+  {{/ifCond}}
+  {{#if greentable.gate}}
+  <input type="text" class="btnClipboard" readonly size=11 value="{{greentable.gate}}"/>
+  <small style="position:relative; left: -19px; margin-right: -18px">(u)</small>
+  {{#ifCond _group "2"}}
+  <button class="btnClipboard btn" value="hotkey://tsterm?switch={{greentable.gate}}&echelon={{greentable.echelon}}">
+    <i class="fa fa-terminal"></i>
+  </button>
+  {{/ifCond}}
+  {{/if}}
+</p>
+
+{{#if session.ipoe_data}}
+<p class="mt-2 mb-0">
+  <b>Связка IPOE</b>
+  {{session.ipoe_data.s_vlan}}/{{session.ipoe_data.c_vlan}}
+  <input type="text" class="btnClipboard" readonly size=14 value="{{session.ipoe_data.mac}}"/>
+  <button class="btn btnClipboard" value="{{session.ipoe_data.s_vlan}}/{{session.ipoe_data.c_vlan}} {{session.ipoe_data.mac}}">
+    <i class="fa fa-clipboard"></i>
+  </button>
+</p>
+{{/if}}
+<hr>
+{{#if session.online}}
+<p class="mt-2 mb-0">
+  Абонент <span style="color: green; font-weight: bold">ONLINE</span> ({{upper session.sesstype}})
+  уже <button class="btnClipboard transparent" style="width: auto" value="Start: {{session.time.start}}
+Update: {{session.time.update}}">
+<span style="cursor: pointer; text-decoration: underline" data-tooltip="Start: {{session.time.start}}<br>Update: {{session.time.update}}">{{session.time.duration.d}} д, {{session.time.duration.h}} ч, {{session.time.duration.m}} м, {{session.time.duration.s}} с</span>
+  </button>
+</p>
+<p class="mb-0 mt-2">
+  {{#if session.ip.local}}
+  <b>Client IP</b>
+  <input type="text" class="btnClipboard" readonly size=11 value="{{session.ip.local}}"/>
+  {{/if}}
+  {{#if session.ip.ext}}
+  <b>Framed IP</b>
+  <input type="text" class="btnClipboard" readonly size=11 value="{{session.ip.ext}}"/>
+  {{/if}}
+</p>
+{{else}}
+  <p class="mt-2 mb-0">
+    Абонент <span style="color: red; font-weight: bold">OFFLINE</span>
+    с <span style="cursor: pointer; text-decoration: underline" data-tooltip="Длительность: {{session.time.duration.d}} д, {{session.time.duration.h}} ч, {{session.time.duration.m}} м, {{session.time.duration.s}} с">{{session.time.start}}</span>
+  </p>
+{{/if}}
+<p class="mt-2 mb-0">
+  <b>BRAS IP</b>
+  <input type="text" class="btnClipboard" readonly size=11 value="{{session.ip.bras}}"/>
+  {{#ifCond _group "2"}}
+  <button class="btnClipboard btn" value="hotkey://tsterm?switch={{session.ip.bras}}&echelon=0">
+    <i class="fa fa-terminal"></i>
+  </button>
+  {{/ifCond}}
+  <button class="btnClipboard transparent" style="float:right" value="{{greentable.dns}}">
+    <b style="cursor: pointer; float:right; text-decoration: underline" data-tooltip="{{greentable.dns}}">DNS</b>
+  </button>
+</p>
+{{#if session.ip.bras_no_policy}}
+<p class="mt-2 mb-0">
+  <b>BRAS (no policy)</b>
+  <input type="text" class="btnClipboard" readonly style="width:50%" value="{{session.ip.bras_no_policy}}"/>
+  {{#ifCond _group "2"}}
+  <button class="btnClipboard btn" value="hotkey://tsterm?switch={{session.ip.bras_no_policy}}&echelon=0">
+    <i class="fa fa-terminal"></i>
+  </button>
+  {{/ifCond}}
+</p>
+{{/if}}
+{{/if}}
+<!-- <table class="onlineTable spaced">
+  <tr>
+    <th colspan="2">
+      <font size=2>
+        ТКД
+        {{#ifCond _group "2"}}
+        <button class="btnClipboard btn transparent" style="width: auto; text-decoration: underline; color: blue"
+        value="hotkey://tsterm?switch={{greentable.ip}}&echelon={{greentable.echelon}}">
+        {{/ifCond}}
+          {{greentable.ip}}
+        {{#ifCond _group "2"}}
+        </button>
+        {{/ifCond}}
+        <button class="btnClipboard btn " value="{{greentable.ip}}">
+          <i class="fa fa-clipboard"></i>
+        </button>
+        порт {{greentable.port}}
+        <button class="btnClipboard btn" value="ТКД {{greentable.ip}} порт {{greentable.port}}">
+          <i class="fa fa-clipboard"></i>
+        </button>
+        <small>({{upper greentable.contype}})</small>
+      </font>
+      <button type="button" id="refreshOnlineTable" style="float: right"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    </th>
+  </tr>
+  {{#if contract.fvno}}
+  <tr>
+    <td>MAC-адрес</td>
+    <td>{{greentable.mac}}</td>
+  </tr>
+  {{else}}
+  <tr>
+    <td>Управление портом</td>
+    <td><a href="{{lastmile.href}}" target="_blank">{{lastmile.name}}</a> // <a href="https://baobab.vimpelcom.ru/show?ctn={{contract.ctn}}" target="_blank">Диагностика</a></td>
+  </tr>
+  <tr>
+    <td>Шлюз</td>
+    <td>
+      s_root:
+      {{#ifCond _group "2"}}
+      <button class="btnClipboard btn transparent" style="width: auto; text-decoration: underline; color: blue"
+      value="hotkey://tsterm?switch={{greentable.agg}}&echelon={{greentable.echelon}}">
+      {{/ifCond}}
+        {{greentable.agg}}
+      {{#ifCond _group "2"}}
+      </button>
+      {{/ifCond}}
+      <button class="btn btnClipboard" value="{{greentable.agg}}">
+        <i class="fa fa-clipboard"></i>
+      </button>
+      {{#if greentable.gate}}
+      <br>u_gate:
+      {{#ifCond _group "2"}}
+      <button class="btnClipboard btn transparent" style="width: auto; text-decoration: underline; color: blue"
+      value="hotkey://tsterm?switch={{greentable.gate}}&echelon={{greentable.echelon}}">
+      {{/ifCond}}
+        {{greentable.gate}}
+      {{#ifCond _group "2"}}
+      </button>
+      {{/ifCond}}
+      <button class="btn btnClipboard" value="{{greentable.gate}}">
+        <i class="fa fa-clipboard"></i>
+      </button>
+    {{/if}}
+    </td>
+  </tr>
+  <tr>
+    <td>DNS</td>
+    <td>{{greentable.dns}}</td>
+  </tr>
+  {{#if session.ipoe_data}}
+  <tr>
+    <td>Связка IPOE</td>
+    <td>{{session.ipoe_data.s_vlan}}/{{session.ipoe_data.c_vlan}} <input type="text" class="btnClipboard" readonly size=14 value="{{session.ipoe_data.mac}}"/> <button class="btn btnClipboard" value="{{session.ipoe_data.s_vlan}}/{{session.ipoe_data.c_vlan}} {{session.ipoe_data.mac}}"><i class="fa fa-clipboard"></i></button></td>
+  </tr>
+  {{/if}}
+  {{#if session.ip.bras_no_policy}}
+  <tr>
+      <td>BRAS IP (no policy)</td>
+      <td>
+        {{#ifCond _group "2"}}
+        <button class="btnClipboard btn transparent" style="width: auto; text-decoration: underline; color: blue"
+        value="hotkey://tsterm?switch={{session.ip.bras_no_policy}}&echelon=0">
+        {{/ifCond}}
+          {{session.ip.bras_no_policy}}
+        {{#ifCond _group "2"}}
+        </button>
+        {{/ifCond}}
+        <button class="btnClipboard btn" value="{{session.ip.bras_no_policy}}">
+          <i class="fa fa-clipboard"></i>
+        </button>
+      </td>
+  </tr>
+  {{/if}}
+  {{#if session.online}}
+  <tr>
+    <td>BRAS IP</td>
+    <td>
+      {{#ifCond _group "2"}}
+      <button class="btnClipboard btn transparent" style="width: auto; text-decoration: underline; color: blue"
+      value="hotkey://tsterm?switch={{session.ip.bras}}&echelon=0">
+      {{/ifCond}}
+        {{session.ip.bras}}
+      {{#ifCond _group "2"}}
+      </button>
+      {{/ifCond}}
+      <button class="btnClipboard btn" value="{{session.ip.bras}}">
+        <i class="fa fa-clipboard"></i>
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td>Client / Framed IP</td>
+    <td>{{#if session.ip.local}}{{session.ip.local}} <button class="btnClipboard btn" value="{{session.ip.local}}"><i class="fa fa-clipboard"></i></button>{{else}}Неопределен{{/if}} / {{#if session.ip.ext}}{{session.ip.ext}} <button class="btnClipboard btn" value="{{session.ip.ext}}"><i class="fa fa-clipboard"></i></button>{{else}}Неопределен{{/if}}</td>
+  </tr>
+  <tr>
+    <td>Start</td>
+    <td>{{session.time.start}}</td>
+  </tr>
+  <tr>
+    <td>Update</td>
+    <td>{{session.time.update}}</td>
+  </tr>
+  <tr>
+    <td>Длительность</td>
+    <td>{{session.time.duration.d}} д, {{session.time.duration.h}} ч, {{session.time.duration.m}} м, {{session.time.duration.s}} с</td>
+  </tr>
+  {{else}}
+  <tr>
+    <td colspan="2">
+      <h3>Абонент OFFLINE</h3>
+      <p>Последняя сессия: {{session.time.start}}</p>
+      <p>BRAS IP: {{session.ip.bras}} <button class="btnClipboard btn" value="{{session.ip.bras}}"><i class="fa fa-clipboard"></i></button> <button class="btnClipboard btn" value="hotkey://tsterm?switch={{session.ip.bras}}&echelon={{greentable.echelon}}"><i class="fa fa-terminal"></i></button></p>
+      </div>
+    </td>
+  </tr>
+  {{/if}}{{/if}}
+</table> -->

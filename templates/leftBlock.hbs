@@ -1,0 +1,49 @@
+<div id="divQueues" style="margin-bottom: 10px;">
+  <a href="/" target="_blank">H</a><a href="/" target="_blank">e</a><a href="/" target="_blank">l</a><a href="/" target="_blank">p</a><a href="/" target="_blank">D</a><a href="/" target="_blank">e</a><a href="/" target="_blank">s</a><a href="/" target="_blank">k</a>
+  <div id="btnSearch" style="float: right;" data-icon="fa-search"><i data-tooltip="Поиск" aria-hidden="true" class="fa fa-search" style="cursor: pointer"></i></div>
+  <div id="btnSearchWindow" class="iframe-popup" style="width: 300px; top: 0; height: 270px; padding: 10px">
+    <a href="/ptn/ng_ptn#/checkaddress/search" target="_blank"><font size="2">Поиск по адресу</font></a>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <a href="/queues_old.pl" target="_blank"><font size="2">Фильтры заявок</font></a>
+    <hr>
+    <form method="post" action="/findticket.pl" target="_blank">
+      <table cellpadding=5>
+        <tr><td>CTN: </td><td><input type="text" name="login"></td></tr>
+        <tr><td> Тикет: </td><td><input type="text" name="TT"></td></tr>
+        <tr><td> Телефон: </td><td><input type="text" name="phone"></td></tr>
+        <tr><td> Контракт: </td><td><input type="text" name="contract"></td></tr>
+        <tr><td> GUID устройства: </td><td><input type="text" name="guid"></td></tr>
+        <tr><td colspan="2"><input type="submit" style="width:100%" value="Поиск"></td></tr>
+      </table>
+    </form>
+  </div>
+</div>
+<div id="divTop" style="{{#if phones.conv}}background-color:#bdeabd{{/if}}"><hr>
+  <input type="text" data-tooltip="CTN" class="btnClipboard" style="width: 80px; text-align: center" readonly value="{{contract.ctn}}">
+  <div style="display:flex; justify-content: space-evenly; font-size: 1.5em; margin-top: 5px">
+    <a href="/ptn/ng_ptn#/house/abonview/house_id/{{address.house.id}}" target="_blank"><i data-tooltip="Открыть дом" class="fa fa-home" aria-hidden="true"></i></a>
+    <a href="/ptn/ng_ptn#/abonent/address/{{address.id}}" target="_blank"><i data-tooltip="Открыть договор" class="fa fa-address-card" aria-hidden="true"></i></a>
+  </div>
+  <div style="display:flex; justify-content: space-evenly; font-size: 1.5em; margin-top: 5px">
+    <div id="btnConnectionTicket"><i data-tooltip="Заявка на подключение:<br>{{tickets.connectionRequest.tooltip}}" class="fa fa-plug {{tickets.connectionRequest.color}}" aria-hidden="true"></i></div>
+    {{#ifCond _group "2"}}{{#if phones.conv}}<button data-tooltip="ССВО" class="btnClipboard transparent" value="hotkey://toie?http://ccbo/ccbo-backoffice/crmintegration/begin.do?main_header.subsc_num={{phones.conv}}"><i class="fa fa-mobile" aria-hidden="true"></i></button>{{/if}}{{/ifCond}}
+  </div>
+</div>
+<div><span id="btnReturnText"><input data-tooltip="Номер заявки" class="btnClipboard mt-4" style="width: 80px; text-align: center" placeholder="№ заявки" value="{{getTicket tickets}}"/></span></div>
+<hr>
+<div id="btnLinks" style="margin-top: 10%" data-icon="fa-sitemap"><i class="fa fa-sitemap fa-2x" style="cursor: pointer"></i><br>Сессии</div>
+<div id="btnPorts" style="margin-top: 10px;" data-icon="fa-repeat"><i class="fa fa-repeat fa-2x" style="cursor: pointer"></i><br>История<br>смены портов</div>
+<div id="btnEquipment" style="margin-top: 10px;" data-icon="fa-hdd-o"><i class="fa fa-hdd-o fa-2x" style="cursor: pointer"></i><br> История<br>оборудования</div>
+<hr>
+<div id="btnLastmile" style="margin-top: 10px;"><i class="fa fa-spinner fa-pulse fa-2x fa-fw" style="cursor: pointer"></i><br><span id="btnLastmileText">Загрузка...</span></div>
+<div id="btnDiag" style="margin-top: 10px;" data-icon="fa-area-chart"><i class="fa fa-area-chart fa-2x" style="cursor: pointer"></i><br>Диагностика</div>
+<div id="btnTech" style="margin-top: 10px; display: none;" data-icon="fa-cog"><i class="fa fa-cog fa-2x" style="cursor: pointer"></i><br>Назначить<br>техника</div>
+<div id="btnTechWindow" class="iframe-popup" style="top:32%; width:1200px; text-align: left">
+  <button type="button" onclick="frames.btnTechFrame.contentWindow.history.back()">Назад</button>
+  <button type="button" onclick="frames.btnTechFrame.contentWindow.location.reload()">Обновить</button>
+  <iframe id="btnTechFrame" src="{{# if tickets.selected }}/ptn/ng_ptn#/schedules/technician/ticket/{{tickets.selected}}{{else}}/{{/if}}" style="width:100%; height: 100%">Ошибка загрузки</iframe>
+</div>
+<hr>
+<div><i id="btnReminder" data-tooltip="Установить напоминание" style="cursor: pointer" class="fa fa-bell-o"></i> <input type="number" id="alert_delay" value=5 min=1 style="width:30px"> мин.</div>
+<div id="btnTime" style="margin-top: 10px;"><i id="timeImg" class="fa fa-clock-o fa-3x" style="cursor: pointer"></i></div>
+<div id="timeLocal"><font size=3 color="black">--:--</font></div>

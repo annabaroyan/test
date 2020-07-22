@@ -1,0 +1,414 @@
+/* Plugin stuff */
+#leftBlock, div.anchor-menu__wrapper {
+  background-color: #222 !important;
+}
+
+#leftBlock div[style="background-color:#bdeabd"], button.transparent {
+  background: #2f4d2f !important;
+}
+
+font[color="black"] {
+  color: white !important;
+}
+
+.tooltip {
+  color: #ccc;
+  background: #222;
+}
+
+.tab {
+    background: #222 !important;
+    text-shadow: none !important;
+    border: 5px solid #222 !important;
+}
+
+.spaced th {
+  color: #ccc !important;
+}
+
+.forButton {
+    background: #222 !important;
+    text-shadow: none !important;
+    color: #fc8 !important;
+}
+
+.fa{
+  color:#888 !important;
+}
+
+.fa:hover{
+  color:#fc8 !important;
+}
+
+#greentable {
+  background: #222 !important;
+  border: 2px solid #444 !important;
+}
+
+/* .onlineTable {
+  background: #222 !important;
+  border-color: 1px solid #444 !important;
+}
+
+.onlineTable tr td:first-child {
+  color: #8a8 !important;
+} */
+
+.iframe-popup {
+  background: black !important;
+  border: 3px solid #28323C !important;
+}
+
+#sendMorning:checked ~ label[for="sendMorning"] {
+  background: #fd8 !important;
+  color: black !important;
+}
+
+
+/* General */
+body {
+  background-color: black !important;
+  color: #ccc !important;
+}
+
+a, td, p {
+  color: #ccc !important;
+}
+
+ul.dropdown-menu, li[role="menuitem"] {
+  background: #222 !important;
+}
+
+textarea, input, select, button, a.button, a.btn, a.btnLink {
+  color: #fff !important;
+  background: #111 !important;
+}
+
+select[name="global_id"] option[style*="background"] { /* wow */
+  color: black !important;
+}
+
+/* Color classes (dark -> light) */
+.color-green-dark, .link--dotted-green-dark {
+  color: #8a8 !important;
+}
+
+.color-red-dark, .red-color, .libk--dotted-red-dark, .title--red {
+  color: #a44 !important;
+}
+
+.bg-red-light {
+  background-color: #600 !important;
+}
+
+.bg-yellow-light {
+  background-color: #662 !important;
+}
+
+li.bg-gray-light:not(.active) {
+  background-color: #222 !important;
+}
+
+.color-blue-dark, .deep-blue-text, font[color="blue"], span[style="color:blue;"], .link--dotted-blue-dark, a.a_popover, span.a_popover, .txsm, tr:not(.colored) th, b, h2, div.nav-links {
+  color: #fc8 !important;
+}
+
+.color-gray-dark, .color-black, .dotted, .link--dotted {
+  color: #ccc !important;
+}
+
+/* Top bar */
+div.topbar, div.bg-blue-bright, div.main-header {
+  background: #222;
+}
+
+.bg-gray-pale--hover:hover {
+    background: #666;
+}
+
+
+div.footer {
+  background: #222;
+}
+
+
+
+/* Popovers, panels, navs */
+div.popover, div.hidden_block {
+  background: #444 !important;
+}
+
+div.arrow::after {
+  border-color: transparent transparent #444 !important;
+}
+.popover-content th, .popover-content .link {
+  color: #aaa;
+}
+
+div.well {
+  background: #444 !important;
+}
+
+div.card, div.card-white, div.mcpe {
+  background: #222;
+}
+
+div.panel--action {
+  background: #444;
+}
+
+table[bgcolor="#ffffff"] {
+  background: #222 !important;
+}
+
+div.collapsed-block__body {
+  background: #444 !important;
+}
+
+/* new design tickets list */
+.tr--color-gray-dark {
+  background: black !important;
+}
+
+tr.bg-gray-light, div[history-ticket-change-directive] div {
+  background: #444 !important;
+}
+
+div.bg-gray-light, tr[ng-if="prototype.is_checked"] {
+  background: #080808;
+}
+
+.tr--color-red-dark {
+  background: #844 !important;
+}
+
+div[ng-if="comments.length"], div.tab-pane {
+  background: #444 !important;
+}
+
+ul.nav-tabs li.active {
+  background: #444;
+}
+
+ul.nav-tabs li.disabled {
+  background: #222;
+}
+
+/* Text in aboninfo */
+.caption, .title {
+  color: #ccc !important;
+}
+
+/* Services table */
+div.services-table {
+  color: #ccc !important;
+}
+
+div.services-table-hover:hover {
+  background-color: #666 !important;
+}
+
+.underlined-dashed {
+  color: #ccc !important;
+  border-bottom: 1px dashed !important;
+}
+
+.services-table-header {
+  filter: brightness(50%) !important;
+  color: black !important;
+}
+
+.services-table-group {
+  background: #222 !important;
+}
+
+.service-data-link  {
+  color: #ccc !important;
+}
+
+span.bundle_color .service-data-link, span.required-m .service-data-link, span.required-n .service-data-link {
+  color: black !important;
+}
+
+.services-table-footer {
+  background: #222 !important;
+}
+
+/* Tbl styles */
+.tbl {
+  color: black !important;
+  background: #222 !important;
+}
+
+.tbl .tr--hovered:hover {
+  background: #666 !important;
+}
+
+.tbl tr {
+  color: #ccc !important;
+}
+
+.clearfix {
+  background-color: #222 !important;
+}
+
+.action-bar {
+  background: #444 !important;
+}
+
+.panel--grey {
+  color: black !important;
+  background: #444 !important;
+}
+
+.bg-gray-bright, .bg-gray-pale {
+  background-color: #444 !important;
+}
+
+td[bgcolor="#DBDEE9"] {
+  background-color: #222 !important;
+}
+
+ /* GP TABLE */
+.problem-component .pr-table-data tr:not(.colored):hover {
+  background-color: #666 !important;
+}
+
+.pr-tab1.pr-active, .colored--yellow {
+  background: #442 !important;
+}
+
+.pr-tab2.pr-active, .colored--pink {
+  background: #422 !important;
+}
+
+.pr-tab3.pr-active, .colored--blue {
+  background: #224 !important;
+}
+
+.pr-tab4.pr-active, .colored--gray {
+  background: #444 !important;
+}
+
+table.pr-table-data {
+    background: #222 !important;
+}
+
+table.pr-table-data tr {
+  border-bottom: 1px solid #444;
+}
+
+table.pr-table-data th, table.pr-table-data th span {
+  color: #bbb !important;
+}
+
+.pr-call-center {
+  background-color: #444 !important;
+}
+
+span[ng-class="code"] {
+  color: black !important;
+}
+
+/* JQuery styling for ticket dialog, datepicker, etc. */
+.ui-tabs-panel, .ui-widget-content {
+  background: #222 !important;
+  color: #ccc !important;
+}
+.ui-widget-header {
+  background: #444 !important;
+}
+.ui-state-default {
+  background: #444 !important;
+}
+.ui-state-hover {
+  background: #333 !important;
+}
+.ui-state-active {
+  background: #222 !important;
+}
+.ngdialog-close::before {
+  color: #aaa !important;
+}
+.ngdialog-content {
+  background-color: #222 !important;
+}
+
+
+
+/* Equipment table */
+table.paleblue .even td {
+  background: black !important;
+}
+
+table.paleblue .odd td {
+  background: #222 !important;
+}
+
+table.paleblue th {
+  background: #888 !important;
+  color: #ccc !important;
+}
+
+
+
+/* OLD DESIGN TABLES */
+/* comments, shedulecrash, ticketslist, etc... */
+table[bgcolor="#8CABBD"] {
+  background-color: #444 !important;
+}
+
+table[bgcolor="#8CABBD"] tr[style*="background-color: rgb(255, 255, 255)"], table[bgcolor="#8CABBD"] tr[bgcolor="#ffffff"] {
+  background-color: #222 !important;
+}
+
+tr[style*="background-color: rgb(255, 0, 0)"] {
+    background: #422 !important;
+}
+
+tr[style*="background-color: rgb(255, 255, 0)"] {
+    background: #442 !important;
+}
+
+table[bgcolor="#8CABBD"] td[bgcolor="#CCCCCC"] {
+  background: black !important;
+}
+
+table[bgcolor="#8CABBD"] td[bgcolor="#FFFFFF"] {
+  background-color: #888;
+}
+
+td[bgcolor="#FFFF66"] a, td[bgcolor="#FF0000"] a, td[bgcolor="#99FF99"] a {
+  color: black !important;
+}
+
+
+
+/* service info page */
+table[bgcolor="#354261"] th, table[bgcolor="#354261"] caption {
+  color: #fd8 !important;
+  background: #666 !important;
+}
+
+table[bgcolor="#354261"] tr[bgcolor="#d9d9c2"] {
+  background: #222 !important;
+  border: 1px solid #888 !important;
+}
+
+
+
+/* GP page */
+div[affected-clients] {
+  background: #222 !important;
+}
+
+
+/* FN old */
+td#dialog_content_ticket ul li {
+  color: #ccc !important;
+}
+
+/* Calendar on tickets search */
+div.calendar td {
+  color: black !important;
+}
