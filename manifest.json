@@ -99,6 +99,6 @@
      "https://fttb/*",
      "https://fttb.bee.vimpelcom.ru/*"
    ],
-   "version": "6.4.1.4",
+   "version": "6.4.1.5",
    "web_accessible_resources": [ "/css/*", "/fonts/*", "/templates/*", "/js/hax_ajax/hack.js" ]
 }
